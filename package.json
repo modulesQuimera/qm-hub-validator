@@ -1,0 +1,25 @@
+{
+  "name": "qm-hub-validator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "validator.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/modulesQuimera/qm-hub-validator.git"
+  },
+  "keywords": ["quimera", "hub", "JIG"],
+  "author": "HUB-LSE",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/modulesQuimera/qm-hub-validator/issues"
+  },
+  "homepage": "https://github.com/modulesQuimera/qm-hub-validator#readme",
+  "node-red": {
+    "nodes": {
+      "validator": "validator.js"
+    }
+  }
+}

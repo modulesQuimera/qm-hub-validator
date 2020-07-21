@@ -1,0 +1,25 @@
+<script type="text/javascript">
+    RED.nodes.registerType('validator', {
+        category: 'Validator',
+        color: '#85e0e0',
+        defaults: {
+            name:{
+                value: ""
+            },
+        },
+        icon: "Validator.svg",
+        inputs: 1,
+        outputs: 1,
+        // icon: "Single_Relay_NA.svg",
+        label: function() { return this.name? "Validator - " + this.name : "Validator"},
+        paletteLabel: "Validator",
+    });
+</script>
+
+<script type="text/html" data-template-name="validator">
+    
+</script>
+
+<script type="text/html" data-help-name="validator">
+    <p>Validator component scans the test file for incompatibilities like step numeration duplicated</p>
+</script>
