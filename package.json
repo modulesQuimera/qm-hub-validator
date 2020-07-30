@@ -1,6 +1,6 @@
 {
-  "name": "qm-hub-validator",
-  "version": "1.0.1",
+  "name": "qm-validator",
+  "version": "1.0.2",
   "description": "",
   "main": "validator.js",
   "scripts": {
