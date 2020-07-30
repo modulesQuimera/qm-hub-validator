@@ -10,7 +10,6 @@
         icon: "Validator.svg",
         inputs: 1,
         outputs: 1,
-        // icon: "Single_Relay_NA.svg",
         label: function() { return this.name? "Validator - " + this.name : "Validator"},
         paletteLabel: "Validator",
     });
@@ -21,5 +20,17 @@
 </script>
 
 <script type="text/html" data-help-name="validator">
-    <p>Validator component scans the test file for incompatibilities like step numeration duplicated</p>
+    <p>
+        Validator component scans the test file for incompatibilities like: <br>
+        <ul>
+            <li>Step numeration duplicated</li>
+            <li>Multiple unique components like:</li>
+                <ol>
+                    <li>Export file</li>
+                    <li>Send to jig</li>
+                    <li>Display config</li>
+                </ol>
+            <li>Wrong structure on test like a 'get_command_message' module without a 'send_receive' module before it</li>
+        </ul>
+    </p>
 </script>

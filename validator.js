@@ -15,6 +15,9 @@ module.exports = function(RED) {
             var step_list = [];
             var duplicated_numbers = new Set();
             var repeated_numbers = [];
+            var qtdWebsocket = globalContext.get("send_to_jig");
+            var qtdExportFile = globalContext.get("export_file");
+            var qtdDisplayConfig = globalContext.get("display_config");
 
             for(var i=0; i<4; i++){
                 for(var j=0; j<file.slots[i].jig_test.length; j++){
@@ -46,18 +49,27 @@ module.exports = function(RED) {
             for (var item of duplicated_numbers){
                 repeated_numbers.push(item);
             }
-            if (node.validate_stepNumber && node.validate_positionModule) {
-                console.log("Valid test generated");
-                send(msg);
+            console.log("display config ", qtdDisplayConfig)
+            console.log("export file ", qtdExportFile)
+            console.log("websokcet ", qtdWebsocket)
+            if((qtdDisplayConfig > 1) || (qtdExportFile > 1) || (qtdWebsocket > 1)){
+                console.log("INVALID TEST\n\nIt must have only 1 'export file', 1 'send to jig' and 1 'display config'");
+                node.error("INVALID TEST\n\nIt must have only 1 'export file', 1 'send to jig' and 1 'display config'");
             }
             else{
-                if(!node.validate_stepNumber){
-                    console.log("INVALID TEST\n\nRepeated step_number: ", repeated_numbers);
-                    node.error("INVALID TEST\n\nRepeated values for step_number: " + JSON.stringify(repeated_numbers));
+                if (node.validate_stepNumber && node.validate_positionModule) {
+                    console.log("Valid test generated");
+                    send(msg);
                 }
-                if(!node.validate_positionModule){
-                    console.log("INVALID TEST\n\nModules 'get_command_message' and 'format_message' needs a 'send-receive' module before each");
-                    node.error("INVALID TEST\n\nModules 'get_command_message' and 'format_message' needs a 'send-receive' module before each");
+                else{
+                    if(!node.validate_stepNumber){
+                        console.log("INVALID TEST\n\nRepeated step_number: ", repeated_numbers);
+                        node.error("INVALID TEST\n\nRepeated values for step_number: " + JSON.stringify(repeated_numbers));
+                    }
+                    if(!node.validate_positionModule){
+                        console.log("INVALID TEST\n\nModules 'get_command_message' and 'format_message' needs a 'send-receive' module before each");
+                        node.error("INVALID TEST\n\nModules 'get_command_message' and 'format_message' needs a 'send-receive' module before each");
+                    }
                 }
             }
         });
